@@ -1,0 +1,45 @@
+<!-- PAYMENT.HTML - Payment Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background: linear-gradient(to bottom, #d50000, #000); color: white; }
+        .container { margin: auto; padding: 20px; max-width: 320px; background: rgba(0, 0, 0, 0.85); border-radius: 8px; }
+        button { background-color: gold; color: black; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+        select { padding: 5px; border-radius: 5px; font-size: 14px; }
+    </style>
+    <script>
+        function updatePrice() {
+            let coupons = document.getElementById("coupons").value;
+            document.getElementById("totalPrice").innerText = coupons * 49;
+        }
+        function goToRegister() {
+            window.location.href = 'register.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Complete Payment</h2>
+        <p>Select Number of Coupons:</p>
+        <select id="coupons" onchange="updatePrice()">
+            <script>
+                for (let i = 1; i <= 50; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                }
+            </script>
+        </select>
+        <p>Total Price: ₹<span id="totalPrice">49</span></p>
+        <p>Scan the UPI QR Code below to pay</p>
+        <img src="https://sigmawire.net/i/04/gfXtA2.png" alt="UPI QR Code" 
+     style="width: 80%; border-radius: 5px;">
+
+        <p>After payment, click "Confirm Payment"</p>
+        <button onclick="goToRegister()">Confirm Payment</button>
+    </div>
+</body>
+</html>
+
