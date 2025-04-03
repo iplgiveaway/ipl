@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RCB vs DC Contest</title>
     <style>
-         @keyframes shake {
+        @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
             50% { transform: translateX(5px); }
@@ -17,6 +17,7 @@
             0%, 100% { transform: translateX(0); }
             50% { transform: translateX(10px); }
         }
+        
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -24,41 +25,49 @@
             color: white;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         .container {
-            width: 95%;
-            max-width: 350px;
+            width: 90%;
+            max-width: 320px;
             margin: 10px auto;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px gold;
+            border-radius: 8px;
+            box-shadow: 0px 0px 8px gold;
         }
         .banner {
             width: 100%;
             border-radius: 5px;
         }
-        .highlight { color: gold; font-size: 14px; font-weight: bold; }
+        .highlight { color: gold; font-size: 12px; font-weight: bold; }
         button {
-            background-color: gold; color: black; padding: 8px 15px; border: none;
+            background-color: gold; color: black; padding: 8px 14px; border: none;
             cursor: pointer; font-size: 14px; border-radius: 5px; font-weight: bold;
         }
         button:hover { background-color: darkgoldenrod; }
-        h1, h2, h3, p { margin: 5px 0; font-size: 13px; }
+        h1, h2, h3, p { margin: 5px 0; font-size: 11px; line-height: 1.2; }
+        select {
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .shake { animation: shake 1s infinite; }
+        .moveLeftRight { animation: moveLeftRight 2s infinite; }
     </style>
 </head>
 <body>
     <h1>🎟️ 10 Tickets Giveaway! 🎉</h1>
     <div class="container">
-        <img src="https://sigmawire.net/i/04/9tVcyM.jpg" alt="RCB vs DC" class="banner">
+        <img src="https://sigmawire.net/i/04/Qk7oSc.jpg" alt="RCB vs DC" class="banner">
         <h2>🏆 First Prize: <span class="highlight">5 TICKETS</span></h2>
         <h3>🥈 Second Prize: <span class="highlight">3 TICKETS</span></h3>
         <h3>🥉 Third Prize: <span class="highlight">2 TICKETS</span></h3>
-        <p>📅 Match Date: <span class="highlight">10th April 2025</span></p>
+        <p>📅 Match Date: <span class="highlight">8th April 2025</span></p>
         <p>📢 Winner Announcement: <span class="highlight">Live on Instagram - 6th May 2025</span></p>
         <p class="moveLeftRight">👉 Follow us on Instagram for winner announcment</p>
         <p><del>₹199</del> Entry Fee: ₹49 per coupon</p>
-       <button class="shake" onclick="location.href='1 index.html'">Register Now</button>
+        <button class="shake" onclick="location.href='1 index.html'">Register Now</button>
     </div>
 </body>
 </html>
