@@ -1,45 +1,47 @@
-<!-- PAYMENT.HTML - Payment Page -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
-    <style>
-        body { text-align: center; font-family: Arial, sans-serif; background: linear-gradient(to bottom, #d50000, #000); color: white; }
-        .container { margin: auto; padding: 20px; max-width: 320px; background: rgba(0, 0, 0, 0.85); border-radius: 8px; }
-        button { background-color: gold; color: black; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
-        select { padding: 5px; border-radius: 5px; font-size: 14px; }
-    </style>
+<button onclick="makePayment()">Proceed to Pay</button>
+
     <script>
-        function updatePrice() {
-            let coupons = document.getElementById("coupons").value;
-            document.getElementById("totalPrice").innerText = coupons * 49;
-        }
-        function goToRegister() {
-            window.location.href = '1index.html';
+        async function makePayment() {
+            const orderId = 'ORDER' + Math.floor(Math.random() * 10000);
+            const orderAmount = 49; // Change this to dynamic based on selection
+
+            try {
+                const response = await fetch('https://api.cashfree.com/pg/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-version': '2022-09-01',
+                        'x-client-id': '77641650be016b0b420549a2e9614677',
+                        'x-client-secret': 'cfsk_ma_prod_7bec0aa24e951cee46e6398e37e470ac_e0af9e45'
+                    },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        order_amount: orderAmount,
+                        order_currency: 'INR',
+                        customer_details: {
+                            customer_id: 'customer_001',
+                            customer_email: 'test@example.com',
+                            customer_phone: '9999999999'
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.payment_link) {
+                    // Redirect user to the Cashfree payment page
+                    window.location.href = data.payment_link;
+                } else {
+                    alert('Payment failed! Please try again.');
+                }
+
+            } catch (error) {
+                console.error('Payment Error:', error);
+                alert('Something went wrong! Try again.');
+            }
         }
     </script>
-</head>
-<body>
-    <div class="container">
-        <h2>Complete Payment</h2>
-        <p>Select Number of Coupons:</p>
-        <select id="coupons" onchange="updatePrice()">
-            <script>
-                for (let i = 1; i <= 50; i++) {
-                    document.write(`<option value="${i}">${i}</option>`);
-                }
-            </script>
-        </select>
-        <p>Total Price: ₹<span id="totalPrice">49</span></p>
-        <p>Scan the UPI QR Code below to pay</p>
-        <img src="https://sigmawire.net/i/04/gfXtA2.png" alt="UPI QR Code" 
-     style="width: 80%; border-radius: 5px;">
 
-        <p>After payment, click "Confirm Payment"</p>
-        <button onclick="goToRegister()">Confirm Payment</button>
-    </div>
 </body>
-</html>
+
 
